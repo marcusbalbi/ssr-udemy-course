@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   target: "node",
-  entry: "./src/client",
+  entry: "./src/index",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build"),
@@ -15,7 +15,7 @@ module.exports = {
         loader: "babel-loader",
         exclude: "/node_modules/",
         options: {
-          preset: [
+          presets: [
             "react",
             "stage-0",
             ["env", { targets: { browsers: ["last 2 versions"] } }],
