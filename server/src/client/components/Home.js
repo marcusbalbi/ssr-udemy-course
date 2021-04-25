@@ -1,12 +1,12 @@
-import React from "react"
-
+import React from "react";
 
 const Home = () => {
   return (
-    <h1>
-      Home component
-    </h1>
-  )
-}
+    <div>
+      <div>teste</div>
+      <button onClick={() => { console.log("ok"); }} >press me!</button>
+    </div>
+  );
+};
 
 export default Home;
