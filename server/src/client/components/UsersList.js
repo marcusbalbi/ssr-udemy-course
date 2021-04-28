@@ -29,4 +29,10 @@ function mapStateToProps(state) {
   };
 }
 
+function loadData() {
+  console.log("loaded!");
+}
+
+export { loadData };
+
 export default connect(mapStateToProps, { fetchUsers })(UsersList);
