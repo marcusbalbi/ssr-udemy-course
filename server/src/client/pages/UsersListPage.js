@@ -1,39 +1,32 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { fetchUsers } from "../actions";
 
-class UsersList extends Component {
-  componentDidMount() {
-    this.props.fetchUsers();
-  }
+const UsersList = () => {
+  const users = useSelector((state) => state.users);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
-  renderUsers() {
-    return this.props.users.map((user) => {
+  function renderUsers() {
+    return users.map((user) => {
       return <li key={user.id}>{user.name}</li>;
     });
   }
 
-  render() {
-    return (
-      <div>
-        lista de usuarios
-        <ul>{this.renderUsers()}</ul>
-      </div>
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    users: state.users,
-  };
-}
+  return (
+    <div>
+      lista de usuarios
+      <ul>{renderUsers()}</ul>
+    </div>
+  );
+};
 
 function loadData(store) {
   return store.dispatch(fetchUsers());
 }
 
 export default {
-  component: connect(mapStateToProps, { fetchUsers })(UsersList),
+  component: UsersList,
   loadData,
 };
