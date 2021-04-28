@@ -29,8 +29,8 @@ function mapStateToProps(state) {
   };
 }
 
-function loadData() {
-  console.log("loaded!");
+function loadData(store) {
+  return store.dispatch(fetchUsers());
 }
 
 export { loadData };
