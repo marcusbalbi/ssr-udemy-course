@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { fetchUsers } from "../actions";
+import { Helmet } from "react-helmet";
 
 const UsersList = () => {
   const users = useSelector((state) => state.users);
@@ -14,8 +15,18 @@ const UsersList = () => {
     });
   }
 
+  function renderHead() {
+    return (
+      <Helmet>
+        <title>{`${users.length} users loaded`}</title>
+        <meta property="og:title" content="Users App" />
+      </Helmet>
+    );
+  }
+
   return (
     <div>
+      {renderHead()}
       lista de usuarios
       <ul>{renderUsers()}</ul>
     </div>
