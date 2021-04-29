@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchAdmins } from "../actions";
 
-class AdminsListPage extends Component {
+class UsersList extends Component {
   componentDidMount() {
     this.props.fetchAdmins();
   }
@@ -16,22 +16,24 @@ class AdminsListPage extends Component {
   render() {
     return (
       <div>
-        <h3>Protected list of admins</h3>
+        <h3>Lista de Usuários Admins</h3>
         <ul>{this.renderAdmins()}</ul>
       </div>
     );
   }
 }
 
-function mapStateToProps({ admins }) {
+function mapStateToProps(state) {
   return {
-    admins,
+    admins: state.admins,
   };
 }
 
+function loadData(store) {
+  return store.dispatch(fetchAdmins());
+}
+
 export default {
-  component: connect(mapStateToProps, { fetchAdmins })(AdminsListPage),
-  loadData: ({ dispatch }) => {
-    dispatch(fetchAdmins);
-  },
+  component: connect(mapStateToProps, { fetchAdmins })(UsersList),
+  loadData,
 };
