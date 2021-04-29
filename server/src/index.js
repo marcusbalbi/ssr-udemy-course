@@ -28,7 +28,14 @@ app.get("*", (req, res) => {
   });
 
   Promise.all(promises).finally(() => {
-    res.send(renderer(req, store));
+    const context = {}
+    const content = renderer(req, store, context);
+
+    if (context.notFound) {
+      res.status(404)
+    }
+
+    res.send(content);
   });
 });
 
