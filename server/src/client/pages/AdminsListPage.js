@@ -8,7 +8,6 @@ const AdminsList = () => {
   const admins = useSelector((state) => state.admins);
   const dispatch = useThunkDispatch();
   useEffect(() => {
-    console.log("fetch users admins!");
     dispatch(fetchAdmins());
   }, []);
   function renderAdmins() {
