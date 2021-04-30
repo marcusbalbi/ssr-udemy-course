@@ -2,11 +2,14 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { fetchAdmins } from "../actions";
 import requireAuth from "../components/hocs/requireAuth";
+import useThunkDispatch from "../hooks/useThunkDispatch";
 
 const AdminsList = () => {
   const admins = useSelector((state) => state.admins);
+  const dispatch = useThunkDispatch();
   useEffect(() => {
-    fetchAdmins();
+    console.log("fetch users admins!");
+    dispatch(fetchAdmins());
   }, []);
   function renderAdmins() {
     return admins.map((admin) => {

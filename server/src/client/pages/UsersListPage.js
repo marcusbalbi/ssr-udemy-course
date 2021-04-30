@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { fetchUsers } from "../actions";
 import { Helmet } from "react-helmet";
+import useThunkDispatch from "../hooks/useThunkDispatch";
 
 const UsersList = () => {
   const users = useSelector((state) => state.users);
+  const dispatch = useThunkDispatch();
+
   useEffect(() => {
-    fetchUsers();
+    console.log("fetch users!")
+    dispatch(fetchUsers());
   }, []);
 
   function renderUsers() {
