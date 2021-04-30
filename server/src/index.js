@@ -1,4 +1,4 @@
-import "babel-polyfill";
+import "@babel/polyfill";
 import express from "express";
 import proxy from "express-http-proxy";
 import renderer from "./helpers/renderer";
